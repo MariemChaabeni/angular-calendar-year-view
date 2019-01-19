@@ -1,0 +1,58 @@
+<div class="calendarcontainer container">
+
+  <div class="row">
+
+    <div *ngFor="let Month of calendar;let m =index" class="col-md-3  col-sm-6 col-xs-12 ">
+      <div class="monthcontainer ">
+        <p class="monthname">{{Month.date | amDateFormat:'MMMM'}}</p>
+        <div class="flexdays">
+          <div class="day" *ngFor="let label of days">
+            {{label}}
+          </div>
+        </div>
+        <div *ngFor="let week of Month.days" class="flexdays">
+          <div *ngFor="let day of week;let i=index" [ngClass]="day?( day.istoday?'todayclass':(day.nb>0?'haveevents':'')):   'void_day'"
+            [style.background-image]="day? ('linear-gradient(120deg, '+day.colors+',#fff)'):''" class="day" [outsideClick]="true"
+            [popover]="yearcalendarpoptemplate" placement="right" (onShown)="dayindex=i;getTodayEvents(day,m)">
+            {{day?.day}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="spinner"  >
+    <img class="spinner_init_calendar" src="assets/images/lg.infinity-rotate-cycle-loader.gif">
+  </div>
+
+</div>
+
+
+<ng-template #yearcalendarpoptemplate>
+
+  <div class="col-md-12 col-calendar">
+    <p [ngClass]="daydetails.istoday?'todaytext':''" class="pop_year_day">{{days[dayindex]}}.</p>
+    <p [ngClass]="daydetails.istoday?'todaytext':''" class="pop_year_day_number">{{daydetails?.day}} </p>
+
+    <div *ngIf="!loader">
+      <div *ngFor="let event of daydetails.events">
+        <div class="circle_day_color" [style.background]="event.color.secondary" [style.border-color]="event.color.primary"></div>
+        <p class="pop_year_event_title" (click)="eventClickedFn(event)">
+          <span>
+            {{event.start| amDateFormat:'HH:mm'}}
+          </span>
+          {{event.title}}
+        </p>
+      </div>
+    </div>
+    <div class="progressbar_popyear" *ngIf="!daydetails.events||(daydetails.events.length==0)&&!loader">
+      There are no events scheduled that day.
+    </div>
+    <div class="progressbar_popyear" *ngIf="loader">
+
+      <img class="spinner_calendar" src="assets/images/lg.infinity-rotate-cycle-loader.gif">
+
+    </div>
+
+  </div>
+
+</ng-template>
