@@ -5,7 +5,7 @@
 https://github.com/MariemChaabeni/angular-calendar-year-view
 
 ## How it looks
-![Image description](https://imgur.com/t6YeX9n)
+![Image description](https://i.imgur.com/t6YeX9n.png)
 
 
 ## Getting started
