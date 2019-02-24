@@ -1,27 +1,74 @@
-# AngularYearCalendar
+# angular 6.0+ calendar year view
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+## Demo
 
-## Development server
+https://github.com/MariemChaabeni/angular-calendar-year-view
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## How it looks
+![Image description](https://imgur.com/t6YeX9n)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting started
+First install through npm:
 
-## Build
+```bash
+npm i angular-calendar-year-view --save
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Usage
+Finally import the calendar module into your apps module:
 
-## Running unit tests
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { AngularCalendarYearViewModule } from 'angular-calendar-year-view';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    BrowserAnimationsModule,
+    AngularCalendarYearViewModule
+  ]
+})
+export class MyModule {}
+```
+Use the view in your html:
+```html
+<angular-calendar-year-view  
+        [themecolor]="'#4ab3cc'" 
+        [events]="events"  
+        [viewDate]="viewDate"  
+        (eventClicked)="eventClicked($event)" >
+</angular-calendar-year-view>
+```
+In your typescript:
 
-## Running end-to-end tests
+```typescript
+const colors: any = {
+    red: {
+      primary: '#ad2121',
+      secondary: '#FAE3E3'
+    },
+    blue: {
+      primary: '#1e90ff',
+      secondary: '#D1E8FF'
+    },
+    yellow: {
+      primary: '#e3bc08',
+      secondary: '#FDF1BA'
+    }
+  };
+  events:any=[
+    {
+      start: new Date(),
+      title: 'title event 1',
+      color: this.colors.red,
+      id:1
+    }
+  ]
+  viewDate:Date = new Date();
+  themecolor:any='#4ab3cc'
+```
+## License
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+MIT
