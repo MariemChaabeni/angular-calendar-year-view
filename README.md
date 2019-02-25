@@ -19,16 +19,16 @@ npm i angular-calendar-year-view --save
 Finally import the calendar module into your apps module:
 
 ```typescript
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { AngularCalendarYearViewModule } from 'angular-calendar-year-view';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
+    BrowserModule,
     AngularCalendarYearViewModule
-  ]
+  ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MyModule {}
 ```
