@@ -2,10 +2,11 @@
 
 ## Demo
 GitHub: https://github.com/MariemChaabeni/angular-calendar-year-view
+
 Live Demo: https://angular-ft5znm.stackblitz.io/
 
 ## How it looks
-![Image description](https://i.imgur.com/t6YeX9n.png)
+![Image description](https://i.imgur.com/IafcF0j.png)
 
 
 ## Getting started
@@ -15,10 +16,11 @@ First install through npm:
 npm i angular-calendar-year-view --save
 ```
 
-You need to import in your index.html
+You need to import in your index.html:
 
 ```html
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 ```
 
@@ -81,6 +83,15 @@ const colors: any = {
   viewDate: Date = new Date();
   themecolor: any = '#0a5ab3'
 ```
+```typescript
+ actionClicked(event) {
+    console.log(event);
+  }
+  eventClicked(event) {
+    console.log(event)
+  }
+```
+
 ## License
 
 MIT
