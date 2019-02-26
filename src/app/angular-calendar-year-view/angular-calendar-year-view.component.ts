@@ -24,6 +24,9 @@ export class AngularCalendarYearViewComponent implements OnInit {
 
   @Output()
   eventClicked = new EventEmitter<any>();
+  
+  @Output()
+  actionClicked = new EventEmitter<any>();
 
   loader: any = false;
   days: any = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
@@ -144,5 +147,8 @@ export class AngularCalendarYearViewComponent implements OnInit {
   }
   refresh(date) {
     this.initCalendar(date);
+  }
+  actionClickedFn(action,event?){
+       this.actionClicked.emit({action:action,event:event})
   }
 }

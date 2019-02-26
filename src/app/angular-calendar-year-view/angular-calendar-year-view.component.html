@@ -30,6 +30,14 @@
     <p [ngClass]="daydetails.istoday?'todaytext':''" class="pop_year_day_number">{{daydetails?.day}} </p>
     <div *ngIf="!loader">
       <div *ngFor="let event of daydetails.events">
+          <a   [style.color]="event.color.primary+'!importants'" 
+               class="icon-action-calendar" 
+               *ngFor='let action of event.actions' 
+                [innerHTML]='action.label' 
+                (click)="actionClickedFn(action.name,event)"
+                >
+            
+          </a>
         <div class="circle_day_color" [style.background]="event.color.secondary" [style.border-color]="event.color.primary"></div>
         <p class="pop_year_event_title" (click)="eventClickedFn(event)">
           <span>
@@ -37,6 +45,7 @@
           </span>
           {{event.title}}
         </p>
+        
       </div>
     </div>
     <div class="progressbar_popyear" *ngIf="!daydetails.events||(daydetails.events.length==0)&&!loader">

@@ -115,14 +115,15 @@
     text-decoration: underline;
     cursor: pointer;
 }
+.icon-action-calendar{
+    float: right;
+    color:#8a8989 !important;
+    cursor: pointer;
+}
+.icon-action-calendar:hover{
+    opacity: 0.4;
 
-
-
-
-
-
-
-
+}
   .calendar-loading .spinner {
     height: 200px;
     width: 200px;
