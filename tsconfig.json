@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-calendar-year-view": [
+        "dist/angular-calendar-year-view"
+      ],
+      "angular-calendar-year-view/*": [
+        "dist/angular-calendar-year-view/*"
+      ]
+    }
   }
 }

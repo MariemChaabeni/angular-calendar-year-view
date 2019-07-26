@@ -133,6 +133,46 @@
           }
         }
       }
+    },
+    "angular-calendar-year-view": {
+      "projectType": "library",
+      "root": "projects/angular-calendar-year-view",
+      "sourceRoot": "projects/angular-calendar-year-view/src",
+      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "sass"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-calendar-year-view/tsconfig.lib.json",
+            "project": "projects/angular-calendar-year-view/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-calendar-year-view/src/test.ts",
+            "tsConfig": "projects/angular-calendar-year-view/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-calendar-year-view/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-calendar-year-view/tsconfig.lib.json",
+              "projects/angular-calendar-year-view/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-year-calendar"
