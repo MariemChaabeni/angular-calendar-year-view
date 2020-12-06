@@ -1,21 +1,22 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostBinding } from "@angular/core";
 import * as cloneDeep from "lodash/cloneDeep";
-import { DomSanitizer } from '@angular/platform-browser';
-const clone: cloneDeep = (<any>cloneDeep).default || cloneDeep
+import { DomSanitizer } from "@angular/platform-browser";
+const clone: cloneDeep = (<any>cloneDeep).default || cloneDeep;
 @Component({
-  selector: 'angular-calendar-year-view',
-  templateUrl: './angular-calendar-year-view.component.html',
-  styleUrls: ['./angular-calendar-year-view.component.scss']
+  selector: "angular-calendar-year-view",
+  templateUrl: "./angular-calendar-year-view.component.html",
+  styleUrls: ["./angular-calendar-year-view.component.scss"],
 })
 export class AngularCalendarYearViewComponent implements OnInit {
-  @HostBinding('style')
+  @HostBinding("style")
   get style() {
     return this.sanitizer.bypassSecurityTrustStyle(
       `--themecolor: ${this.themecolor};`
     );
   }
   @Input()
-  themecolor:any='#ff0000'
+  themecolor: string = "#ff0000";
+  @Input() showWeekNumbers: boolean = true;
   @Input()
   events = [];
 
@@ -24,10 +25,10 @@ export class AngularCalendarYearViewComponent implements OnInit {
 
   @Output()
   eventClicked = new EventEmitter<any>();
-  
+
   @Output()
   actionClicked = new EventEmitter<any>();
-
+  nbweekes:number=1
   loader: any = false;
   days: any = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
   dayindex: any;
@@ -35,33 +36,37 @@ export class AngularCalendarYearViewComponent implements OnInit {
   year: any = new Date().getFullYear();
   calendar: any = [];
   spinner: any = true;
-  constructor(              public sanitizer:DomSanitizer,
-
-  ) { }
+  constructor(public sanitizer: DomSanitizer) {}
   ngOnInit() {
     this.initCalendar(this.viewDate);
   }
   ngOnChanges() {
-    this.initCalendar(this.viewDate);
+    // this.initCalendar(this.viewDate);
   }
   initCalendar(date) {
     this.year = date.getFullYear();
     this.calendar = [];
     this.spinner = true;
+this.nbweekes  = 1
     for (let index = 0; index < 12; index++) {
       this.calendar.push({
         date: new Date(this.year, index + 1, 0),
-        days: this.generateCalendar(index + 1, this.year)
+        nbweek:this.nbweekes,
+        days: this.generateCalendar(index + 1, this.year),
       });
     }
-    let self = this;
     setTimeout(() => {
-      self.spinner = false;
+      this.spinner = false;
     }, 2000);
+    console.log(this.calendar);
+    
   }
   generateCalendar(month, year) {
+    console.log(this.nbweekes);
+    
     let monthList = [];
     let nbweeks = this.getNbWeeks(month, year);
+    this.nbweekes+=nbweeks
     let dayone = new Date(year, month - 1, 1).getDay();
     let nbdaysMonth = new Date(year, month, 0).getDate();
     let lastdayindex = new Date(year, month - 1, nbdaysMonth).getDay();
@@ -80,13 +85,13 @@ export class AngularCalendarYearViewComponent implements OnInit {
       for (let indexday = dayone; indexday < lastday; indexday++) {
         let d1 = new Date(year, month - 1, day).toDateString();
         let istoday = d1 == today;
-        let colorsEvents = this.getnbevents(day, month - 1)
+        let colorsEvents = this.getnbevents(day, month - 1);
         monthList[indexweek][indexday] = {
           day: day,
           istoday: istoday,
           colors: colorsEvents.color,
           events: [],
-          nb: colorsEvents.nb
+          nb: colorsEvents.nb,
         };
         day++;
       }
@@ -101,7 +106,7 @@ export class AngularCalendarYearViewComponent implements OnInit {
     return (nbdaysMonth + dayone + (6 - lastday)) / 7;
   }
   getTodayEvents(day, month) {
-    this.daydetails = {}
+    this.daydetails = {};
 
     if (this.events.length > 0) {
       this.loader = true;
@@ -120,13 +125,12 @@ export class AngularCalendarYearViewComponent implements OnInit {
             self.loader = false;
           }, 1000);
         }
-
       }
     }
   }
   getnbevents(day, month) {
     let nb = 0;
-    let colors = []
+    let colors = [];
     if (this.events.length > 0) {
       let d1 = new Date(this.year, month, day).toDateString();
       for (let index = 0; index < this.events.length; index++) {
@@ -134,12 +138,12 @@ export class AngularCalendarYearViewComponent implements OnInit {
         let d2 = element.start.toDateString();
         if (d2 == d1) {
           nb++;
-          colors.push(element.color.secondary)
+          colors.push(element.color.secondary);
         }
       }
-      return ({ nb: nb, color: colors.toString() })
+      return { nb: nb, color: colors.toString() };
     } else {
-      return { color: "", nb: 0 }
+      return { color: "", nb: 0 };
     }
   }
   eventClickedFn(event) {
@@ -148,7 +152,7 @@ export class AngularCalendarYearViewComponent implements OnInit {
   refresh(date) {
     this.initCalendar(date);
   }
-  actionClickedFn(action,event?){
-       this.actionClicked.emit({action:action,event:event})
+  actionClickedFn(action, event?) {
+    this.actionClicked.emit({ action: action, event: event });
   }
 }

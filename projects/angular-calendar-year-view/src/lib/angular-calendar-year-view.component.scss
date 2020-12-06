@@ -1,208 +1,208 @@
 .flexdays {
-    display: flex;
+  display: flex;
 }
 
 .calendarcontainer {
-    margin: auto;
-    padding: 15px;
+  margin: auto;
+  padding: 15px;
 }
-.col-calendar{
-    min-width: 250px;
+.col-calendar {
+  min-width: 250px;
 }
 .monthcontainer {
-    width: 245px;
-    margin: auto;
-    background: #ffffff;
-    padding: 10px;
-    /* margin: 15px; */
-    margin-bottom: 25px;
-    min-height: 293px;
+  width: 245px;
+  margin: auto;
+  background: #ffffff;
+  padding: 10px;
+  /* margin: 15px; */
+  margin-bottom: 25px;
+  min-height: 293px;
 }
 
 .haveevents {
-    background: linear-gradient(120deg, var(--primary), #fff);
-    color: var(--textcolor);
+  background: linear-gradient(120deg, var(--primary), #fff);
+  color: var(--textcolor);
 }
 
 .flexdays .day {
-    padding: 2px;
-    width: 28px !important;
-    height: 28px !important;
-    border-radius: 50%;
-    margin: 2px;
-    text-align: center
+  padding: 2px;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  margin: 2px;
+  text-align: center;
+}
+.flexdays .week-num {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--themecolor);
 }
 
 .flexdays .day:hover {
-    background: #eee;
-    cursor: pointer;
+  background: #eee;
+  cursor: pointer;
 }
 
 .yeardayactive {
-    background: #eee;
-    cursor: pointer;
+  background: #eee;
+  cursor: pointer;
 }
 
 .monthname {
-    text-align: center;
-    font-size: 18px;
-    color: var(--themecolor);
-    text-transform: capitalize;
+  text-align: center;
+  font-size: 18px;
+  color: var(--themecolor);
+  text-transform: capitalize;
 }
 
 .title-calendar-year {
-    margin-bottom: 25px
+  margin-bottom: 25px;
 }
 
 .todayclass {
-    background: var(--themecolor) !important;
-    color: #fff;
+  background: var(--themecolor) !important;
+  color: #fff;
 }
 
 .eventclass {
-    background: #4ab3cc !important;
-    color: #fff;
+  background: #4ab3cc !important;
+  color: #fff;
 }
 
 .todaytext {
-    color: var(--themecolor) !important;
+  color: var(--themecolor) !important;
 }
 
 .eventtext {
-    color: #4ab3cc !important;
+  color: #4ab3cc !important;
 }
 
 .void_day {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .pop_year_day {
-    color: #6c6c6c;
-    font-size: 16px;
+  color: #6c6c6c;
+  font-size: 16px;
 }
 
 .pop_year_day_number {
-    font-size: 38px;
-    color: #b3b3b3;
-    margin-left: 6px;
-    margin-top: -15px;
+  font-size: 38px;
+  color: #b3b3b3;
+  margin-left: 6px;
+  margin-top: -15px;
 }
 
 .circle_day_color {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    float: left;
-    margin-right: 6px;
-    margin-top: 5px;
-    border: 1px solid
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 6px;
+  margin-top: 5px;
+  border: 1px solid;
 }
 
 .pop_year_event_title {
-    width: 200px;
-    color: #b7b7b6;
-    margin-top: -8px;
+  width: 200px;
+  color: #b7b7b6;
+  margin-top: -8px;
 }
 
 .progressbar_popyear {
-    width: 200px;
-    padding: 13px 0px;
+  width: 200px;
+  padding: 13px 0px;
 }
-
-
 
 .pop_year_event_title:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
-.icon-action-calendar{
-    float: right;
-    color:#8a8989 !important;
-    cursor: pointer;
+.icon-action-calendar {
+  float: right;
+  color: #8a8989 !important;
+  cursor: pointer;
 }
-.icon-action-calendar:hover{
-    opacity: 0.4;
-
+.icon-action-calendar:hover {
+  opacity: 0.4;
 }
-  .calendar-loading .spinner {
-    height: 200px;
-    width: 200px;
-    animation: rotate 2s linear infinite;
-    transform-origin: center center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+.calendar-loading .spinner {
+  height: 200px;
+  width: 200px;
+  animation: rotate 2s linear infinite;
+  transform-origin: center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.calendar-loading .spinner .path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+  stroke: var(--themecolor);
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
-  .calendar-loading .spinner .path {
+}
+@keyframes dash {
+  0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
-    animation: dash 1.5s ease-in-out infinite;
-    stroke-linecap: round;
-    stroke: var(--themecolor) ;
   }
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
   }
-  @keyframes dash {
-    0% {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      stroke-dasharray: 89, 200;
-      stroke-dashoffset: -35px;
-    }
-    100% {
-      stroke-dasharray: 89, 200;
-      stroke-dashoffset: -124px;
-    }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
   }
-
-
-
+}
 
 .loader_popover_calendar {
-    height: 6px;
-    width: 90%;
-    margin-bottom: 10px;
-    overflow: hidden;
-    background-color: #ffdede00;
-    position: absolute;
-  }
-  .loader_popover_calendar:before {
-    display: block;
-    position: absolute;
-    content: "";
+  height: 6px;
+  width: 90%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: #ffdede00;
+  position: absolute;
+}
+.loader_popover_calendar:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -20px;
+  width: 20px;
+  height: 4px;
+  background-color: var(--themecolor);
+  animation: loading 1s linear infinite;
+}
+@keyframes loading {
+  from {
     left: -20px;
-    width: 20px;
-    height: 4px;
-    background-color: var(--themecolor);
-    animation: loading 1s linear infinite;
+    width: 30%;
   }
-  @keyframes loading {
-    from {
-      left: -20px;
-      width: 30%;
-    }
-    50% {
-      width: 30%;
-    }
-    70% {
-      width: 70%;
-    }
-    80% {
-      left: 50%;
-    }
-    95% {
-      left: 120%;
-    }
-    to {
-      left: 100%;
-    }
+  50% {
+    width: 30%;
   }
-  
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
+}
